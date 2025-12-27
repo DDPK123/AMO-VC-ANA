@@ -1,0 +1,222 @@
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Poppins',sans-serif;
+}
+
+body{
+ background:#2b003d;
+ overflow:hidden;
+}
+
+canvas{
+ position:fixed;
+ inset:0;
+ z-index:0;
+}
+
+/* CARD PRINCIPAL */
+.card{
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%) scale(0.9);
+ width:1700px;
+ padding:40px;
+ background:rgba(0,0,0,0.65);
+ border-radius:30px;
+ text-align:center;
+ color:#fff;
+ z-index:2;
+ clip-path:inset(0 100% 100% 0);
+ animation:drawCard 2.2s ease-out forwards, glow 3s infinite alternate;
+}
+
+.card::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ border-radius:30px;
+ border:2px solid rgba(216,140,255,0.9);
+ box-shadow:0 0 25px rgba(200,0,255,.8);
+ clip-path:inset(0 100% 100% 0);
+ animation:drawCard 2.2s ease-out forwards;
+ pointer-events:none;
+}
+
+@keyframes drawCard{
+ 0%   {clip-path:inset(0 100% 100% 0);}
+ 25%  {clip-path:inset(0 0 100% 0);}
+ 50%  {clip-path:inset(0 0 0 100%);}
+ 75%  {clip-path:inset(100% 0 0 0);}
+ 100% {clip-path:inset(0 0 0 0);}
+}
+
+@keyframes glow{
+ from{box-shadow:0 0 30px rgba(170,0,255,.4)}
+ to{box-shadow:0 0 80px rgba(200,0,255,1)}
+}
+
+h1{
+ color:#d88cff;
+ margin-bottom:25px;
+ font-size:36px;
+}
+
+/* GRID */
+.flip-grid{
+ display:flex;
+ justify-content:space-between;
+ gap:30px;
+ margin:20px 0;
+}
+
+/* FLIP CARD */
+.flip-card{
+ width:500px;
+ height:700px;
+ perspective:1400px;
+ cursor:pointer;
+}
+
+.flip-inner{
+ width:100%;
+ height:100%;
+ position:relative;
+ transform-style:preserve-3d;
+ transition:transform 1s;
+}
+
+.flip-card.flipped .flip-inner{
+ transform:rotateY(180deg);
+}
+
+/* FACES */
+.flip-front,
+.flip-back{
+ position:absolute;
+ inset:0;
+ backface-visibility:hidden;
+ -webkit-backface-visibility:hidden;
+ border-radius:25px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+/* FRENTE */
+.flip-front{
+ background:linear-gradient(145deg,#6a1b9a,#3b004f);
+ color:#fff;
+ font-size:130px;
+ font-weight:700;
+ letter-spacing:10px;
+ text-shadow:
+   0 0 15px rgba(216,140,255,.6),
+   0 0 40px rgba(200,0,255,.9);
+ animation:pulse 2s infinite;
+}
+
+/* VERSO */
+.flip-back{
+ transform:rotateY(180deg) !important;
+ background:radial-gradient(circle,#2b003d,#120015);
+}
+
+/* TEXTO DO PEDIDO */
+.text-love{
+ background:radial-gradient(circle,#2b003d,#120015);
+ color:#ffb3ff;
+ font-size:70px;
+ font-weight:700;
+ text-align:center;
+ line-height:1.2;
+ letter-spacing:4px;
+ text-shadow:
+   0 0 15px rgba(255,150,255,.7),
+   0 0 40px rgba(200,0,255,1);
+ animation:fadeIn 1s ease forwards;
+}
+
+/* IMAGENS */
+.flip-back.custom img{
+ width:80%;
+ height:auto;
+ border-radius:20px;
+ box-shadow:0 0 25px rgba(216,140,255,.8);
+ animation:fadeIn 1s ease forwards;
+}
+
+/* ANIMAÇÕES */
+@keyframes pulse{
+ 0%{transform:scale(1)}
+ 50%{transform:scale(1.08)}
+ 100%{transform:scale(1)}
+}
+
+@keyframes fadeIn{
+ from{opacity:0; transform:scale(.8)}
+ to{opacity:1; transform:scale(1)}
+}
+
+/* 💜 CORAÇÕES */
+.heart{
+ position:fixed;
+ font-size:26px;
+ color:#ff66cc;
+ pointer-events:none;
+ animation:explode 1s ease-out forwards;
+ text-shadow:0 0 15px rgba(255,100,200,.8);
+}
+
+@keyframes explode{
+ from{
+  transform:translate(0,0) scale(1);
+  opacity:1;
+ }
+ to{
+  transform:translate(var(--x),var(--y)) scale(0);
+  opacity:0;
+ }
+}
+body{
+  cursor: none;
+}
+.cursor-heart{
+  position: fixed;
+  font-size: 30px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  animation: pulse 1s infinite;
+  filter: drop-shadow(0 0 12px rgba(255,120,200,.9));
+}
+/* BOTÃO ESPECIAL */
+.special-button{
+  margin: 25px auto 0 auto;
+  display: none;
+  padding: 18px 45px;
+  font-size: 26px;
+  font-weight: 700;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff5cff, #b400ff);
+  color: white;
+  box-shadow: 0 0 25px rgba(255,100,255,.9);
+  animation: pulse 1.5s infinite;
+  transition: transform .3s, box-shadow .3s;
+}
+
+/* Animação ao aparecer */
+.special-button.show{
+  display: block;
+  animation: fadeIn 1s ease forwards, pulse 1.5s infinite;
+}
+
+/* Hover */
+.special-button:hover{
+  transform: scale(1.12);
+  box-shadow: 0 0 45px rgba(255,140,255,1);
+}
