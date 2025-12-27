@@ -75,7 +75,7 @@ h1{
 /* FLIP CARD */
 .flip-card{
  width:500px;
- height:500px;
+ height:400px;
  perspective:1400px;
  cursor:pointer;
 }
@@ -220,4 +220,5 @@ body{
   transform: scale(1.12);
   box-shadow: 0 0 45px rgba(255,140,255,1);
 }
+
 
